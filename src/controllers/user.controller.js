@@ -17,11 +17,10 @@ export const createUser = async (req,res) => {
 
 export const getUsers = async (req, res) => {
   try {
-    const users = await UserModel.find().populate("Course"); 
-    return res.status(200).json({
-      ok:true,
-      data: users
-    })
+    const users = await UserModel.find()
+    .populate("courses")
+    .populate("assignment"); 
+    return res.status(200).json(users);
   } catch (error) {
     console.log(error);
     return res.status(500).json ({

@@ -10,20 +10,10 @@ const courseSchema = new Schema(
       type: String,
       required: false,
     },
-    lessons: [
-      {
-        title: { type: String, required: true },
-        content: { type: String, required: true },
-      },
-    ],
-    deletedAt: {
-      type: Date,
-      default: null,
-    },
   },
   {
     versionKey: false,
   }
 );
 
-export const CourseModel = model("Course", courseSchema);
+export const CourseModel = model("Courses", courseSchema);

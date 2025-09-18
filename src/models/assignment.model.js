@@ -16,10 +16,6 @@ const assignmentSchema = new Schema(
       min: 0,
       max: 10,
     },
-    deletedAt: {
-      type: Date,
-      default: null,
-    },
   },
   {
     versionKey: false,

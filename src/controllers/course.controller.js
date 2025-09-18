@@ -2,10 +2,10 @@ import { CourseModel } from "../models/CourseModel.js";
 
 export const createCourse = async (req, res) => {
   try {
-    const Course = new CourseModel(req.body);
-    return res.status(201).json({Course});
+    const Course = CourseModel.create(req.body);
+    res.status(201).json({Course});
   } catch (error) {
-    return res.status(500).json({
+    res.status(500).json({
       msg: "Error al crear el curso"
     });
   }
@@ -37,7 +37,7 @@ export const addAssignmentCourse = async (req, res) => {
       CourseId, 
       { $push: { Assignment: AssignmentId } },
       { new: true }
-    ).populate("Assignment");
+    ).populate("assignment");
     if (!Course) return res.status(404).json({msg: "Curso no encontrado"});
     res.json(Course);
   } catch(error){

@@ -1,6 +1,6 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types } from "mongoose";
 
-const userSchema = new Schema(
+const UserSchema = new Schema(
   {
     name: {
       type: String,
@@ -25,14 +25,18 @@ const userSchema = new Schema(
         country: { type: String, required: false },
       },
     },
-    deletedAt: {
-      type: Date,
-      default: null,
+    courses:{
+      type: Types.ObjectId,
+      ref: "Courses",
     },
+    assignment: {
+      type: Types.ObjectId,
+      ref: "Assignment",
+    }
   },
   {
     versionKey: false,
   }
 );
 
-export const UserModel = model("User", userSchema);
+export const UserModel = model("User", UserSchema);
