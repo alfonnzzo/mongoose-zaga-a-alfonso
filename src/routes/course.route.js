@@ -8,15 +8,15 @@ import {
     deleteCourse
 } from "../controllers/course.controller.js"
 
-const CousesRoutes = Router();
+const CoursesRoutes = Router();
 
-CousesRoutes.post("/", createCourse)
-CousesRoutes.get("/", getCourses)
-CousesRoutes.get("/:id", getCourseById)
-CousesRoutes.put("/:id", addAssignmentCourse)
-CousesRoutes.delete("/:id", deleteCourse)
+CoursesRoutes.post("/courses", createCourse)
+CoursesRoutes.get("/courses", getCourses)
+CoursesRoutes.get("/courses/:id", getCourseById)
+CoursesRoutes.put("/courses/:id", addAssignmentCourse)
+CoursesRoutes.delete("/courses/:id", deleteCourse)
 
-export default CousesRoutes;
+export default CoursesRoutes;
 
 
 

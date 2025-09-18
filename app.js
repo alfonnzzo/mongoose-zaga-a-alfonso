@@ -3,6 +3,8 @@ import { connectDB } from "./src/config/database.js";
 connectDB();
 import "dotenv/config";
 import UserRoutes from "./src/routes/user.route.js";
+import CoursesRoutes from "./src/routes/course.route.js";
+import assignmentRoutes from "./src/routes/assignment.route.js";
 
 const app = express();
 app.use(express.json());
@@ -14,4 +16,6 @@ app.listen(PORT, () =>{
 })
 
 app.use("/api", UserRoutes);
+app.use("/api", CoursesRoutes);
+app.use("/api", assignmentRoutes);
 

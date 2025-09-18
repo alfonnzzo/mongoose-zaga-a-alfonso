@@ -10,11 +10,11 @@ import {
 
 const assignmentRoutes = Router();
 
-assignmentRoutes.post("/", createAssignment);
-assignmentRoutes.get("/", getAssignments);
-assignmentRoutes.get("/:id", getAssignmentById);
-assignmentRoutes.put("/:id", updateAssignment);
-assignmentRoutes.delete("/:id", deleteAssignment);
+assignmentRoutes.post("/assignments", createAssignment);
+assignmentRoutes.get("/assignments", getAssignments);
+assignmentRoutes.get("/assignments/:id", getAssignmentById);
+assignmentRoutes.put("/assignments/:id", updateAssignment);
+assignmentRoutes.delete("/assignments/:id", deleteAssignment);
 
 
 export default assignmentRoutes;

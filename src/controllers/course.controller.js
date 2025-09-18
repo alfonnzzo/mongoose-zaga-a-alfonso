@@ -1,9 +1,10 @@
-import { CourseModel } from "../models/CourseModel.js";
+import { CourseModel } from "../models/course.model.js";
 
 export const createCourse = async (req, res) => {
   try {
-    const Course = CourseModel.create(req.body);
-    res.status(201).json({Course});
+    const newCourse = new CourseModel(req.body);
+    await newCourse.save();
+    res.status(201).json(newCourse);
   } catch (error) {
     res.status(500).json({
       msg: "Error al crear el curso"
@@ -13,8 +14,9 @@ export const createCourse = async (req, res) => {
 
 export const getCourses = async (req, res) => {
   try{
-    const Course = await CourseModel.find().populate("Assignment");
-    res.json(Course);
+    const course = await CourseModel.find()
+    .populate("title");
+    return res.status(200).json(course);
   } catch (error){
     res.status(500).json("Error interno del servidor")
   }
@@ -22,7 +24,8 @@ export const getCourses = async (req, res) => {
 
 export const getCourseById = async (req, res) => {
   try {
-    const Course = await CourseModel.findById(req.params.id).populate("Assignment");
+    const Course = await CourseModel.findById(req.params.id)
+    .populate("title");
     if (!Course) return res.status(404).json({msg: "Curso no encontrado"})
     res.json(Course)
   } catch (error){
@@ -37,7 +40,8 @@ export const addAssignmentCourse = async (req, res) => {
       CourseId, 
       { $push: { Assignment: AssignmentId } },
       { new: true }
-    ).populate("assignment");
+    ).populate("title")
+    .populate("description");
     if (!Course) return res.status(404).json({msg: "Curso no encontrado"});
     res.json(Course);
   } catch(error){
